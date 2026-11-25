@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this code or its results, please cite it as below."
+title: "How much does retrieval matter for a small local LLM? A RAG ablation on SQuAD"
+abstract: "Retrieval and generation scored separately: BM25, dense, hybrid and re-ranked retrieval with a small local LLM on SQuAD."
+authors:
+  - family-names: Hussain
+    given-names: Ashhar
+    orcid: "https://orcid.org/0009-0009-1568-9852"
+    affiliation: "Department of Computer Science and Information Technology, University of Kotli, AJ&K, Pakistan"
+repository-code: "https://github.com/Ashhar-Hussain/rag-retrieval-ablation"
+license: MIT
+version: "1.0.0"
+date-released: "2026-11-25"
+keywords:
+  - retrieval-augmented generation
+  - RAG
+  - dense retrieval
+  - BM25
+  - re-ranking
+  - LLM evaluation

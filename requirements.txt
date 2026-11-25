@@ -1,0 +1,9 @@
+torch
+transformers>=4.45
+sentence-transformers>=3.0
+rank-bm25
+huggingface_hub
+pandas
+numpy
+matplotlib
+pyarrow

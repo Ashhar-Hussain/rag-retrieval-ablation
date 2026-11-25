@@ -1,0 +1,7 @@
+**Retrieval.** On 1,000 questions, Recall@1 / Recall@5 / MRR@10: BM25 0.768 / 0.916 / 0.830; MiniLM 0.654 / 0.888 / 0.753; BGE-small 0.704 / 0.903 / 0.789; Hybrid (BM25 + BGE, RRF) 0.784 / 0.939 / 0.851; Hybrid + cross-encoder re-rank 0.892 / 0.970 / 0.926. BGE-small vs MiniLM on R@1: +0.050 [+0.021, +0.077] (significant). BGE-small vs BM25 on R@1: -0.064 [-0.097, -0.031] (significant). Hybrid (BM25 + BGE, RRF) vs BGE-small on R@1: +0.080 [+0.055, +0.107] (significant). Hybrid + cross-encoder re-rank vs Hybrid (BM25 + BGE, RRF) on R@1: +0.108 [+0.086, +0.130] (significant).
+
+**Answers.** With Qwen2.5-0.5B-Instruct on 150 questions, F1 is 0.163 closed-book, 0.579 with BM25, 0.612 with the best pipeline and 0.756 with the gold paragraph. best pipeline top-3 vs BM25 top-3: +0.033 [-0.024, +0.089]. BM25 top-3 vs closed-book: +0.416 [+0.338, +0.495]. gold paragraph vs best pipeline top-3: +0.144 [+0.095, +0.198].
+
+**Misses.** When the best pipeline put the gold paragraph in its top 3, F1 was 0.626; when it missed (5 of 150 questions) F1 was 0.200 and the model abstained 0% of the time, so most misses turn into wrong answers rather than refusals.
+
+**Latency (CPU).** BM25 3.9 ms, BGE 21.9 ms and re-ranking 827 ms per query; generation 0.88 s per answer with three paragraphs (570 prompt tokens) against 0.47 s closed-book. Generation, not retrieval, dominates end-to-end time.

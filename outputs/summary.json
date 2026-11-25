@@ -1,0 +1,211 @@
+{
+  "retrieval": [
+    {
+      "retriever": "BM25",
+      "R@1": 0.768,
+      "R@5": 0.916,
+      "R@10": 0.938,
+      "R@20": 0.957,
+      "MRR@10": 0.8303194444444445,
+      "MRR 95% CI": "[0.810, 0.850]"
+    },
+    {
+      "retriever": "MiniLM",
+      "R@1": 0.654,
+      "R@5": 0.888,
+      "R@10": 0.936,
+      "R@20": 0.966,
+      "MRR@10": 0.7530539682539682,
+      "MRR 95% CI": "[0.730, 0.776]"
+    },
+    {
+      "retriever": "BGE-small",
+      "R@1": 0.704,
+      "R@5": 0.903,
+      "R@10": 0.942,
+      "R@20": 0.97,
+      "MRR@10": 0.7892726190476189,
+      "MRR 95% CI": "[0.767, 0.810]"
+    },
+    {
+      "retriever": "Hybrid (BM25 + BGE, RRF)",
+      "R@1": 0.784,
+      "R@5": 0.939,
+      "R@10": 0.968,
+      "R@20": 0.985,
+      "MRR@10": 0.8514531746031746,
+      "MRR 95% CI": "[0.833, 0.870]"
+    },
+    {
+      "retriever": "Hybrid + cross-encoder re-rank",
+      "R@1": 0.892,
+      "R@5": 0.97,
+      "R@10": 0.981,
+      "R@20": 0.985,
+      "MRR@10": 0.9259992063492064,
+      "MRR 95% CI": "[0.911, 0.939]"
+    }
+  ],
+  "retrieval_comparisons": [
+    {
+      "comparison": "BGE-small vs MiniLM",
+      "metric": "R@1",
+      "difference": 0.05,
+      "ci_low": 0.021,
+      "ci_high": 0.077,
+      "significant": true
+    },
+    {
+      "comparison": "BGE-small vs MiniLM",
+      "metric": "R@5",
+      "difference": 0.015,
+      "ci_low": -0.0030249999999999986,
+      "ci_high": 0.035,
+      "significant": false
+    },
+    {
+      "comparison": "BGE-small vs BM25",
+      "metric": "R@1",
+      "difference": -0.064,
+      "ci_low": -0.097,
+      "ci_high": -0.031,
+      "significant": true
+    },
+    {
+      "comparison": "BGE-small vs BM25",
+      "metric": "R@5",
+      "difference": -0.013,
+      "ci_low": -0.034025,
+      "ci_high": 0.007,
+      "significant": false
+    },
+    {
+      "comparison": "Hybrid (BM25 + BGE, RRF) vs BGE-small",
+      "metric": "R@1",
+      "difference": 0.08,
+      "ci_low": 0.055,
+      "ci_high": 0.107,
+      "significant": true
+    },
+    {
+      "comparison": "Hybrid (BM25 + BGE, RRF) vs BGE-small",
+      "metric": "R@5",
+      "difference": 0.036,
+      "ci_low": 0.019,
+      "ci_high": 0.053,
+      "significant": true
+    },
+    {
+      "comparison": "Hybrid + cross-encoder re-rank vs Hybrid (BM25 + BGE, RRF)",
+      "metric": "R@1",
+      "difference": 0.108,
+      "ci_low": 0.086,
+      "ci_high": 0.13002499999999986,
+      "significant": true
+    },
+    {
+      "comparison": "Hybrid + cross-encoder re-rank vs Hybrid (BM25 + BGE, RRF)",
+      "metric": "R@5",
+      "difference": 0.031,
+      "ci_low": 0.018,
+      "ci_high": 0.044,
+      "significant": true
+    }
+  ],
+  "generation": [
+    {
+      "condition": "closed-book",
+      "EM": 0.08,
+      "F1": 0.16257415439223916,
+      "abstain": 0.0,
+      "s_per_answer": 0.46507924238840737,
+      "prompt_tokens": 33.77333333333333
+    },
+    {
+      "condition": "BM25 top-3",
+      "EM": 0.47333333333333333,
+      "F1": 0.5789027789961293,
+      "abstain": 0.006666666666666667,
+      "s_per_answer": 0.8340458869934082,
+      "prompt_tokens": 571.76
+    },
+    {
+      "condition": "best pipeline top-3",
+      "EM": 0.4866666666666667,
+      "F1": 0.6122149825850055,
+      "abstain": 0.0,
+      "s_per_answer": 0.8835733397801717,
+      "prompt_tokens": 569.66
+    },
+    {
+      "condition": "gold paragraph",
+      "EM": 0.6333333333333333,
+      "F1": 0.7564953943910703,
+      "abstain": 0.013333333333333334,
+      "s_per_answer": 0.5807410923639933,
+      "prompt_tokens": 222.44
+    }
+  ],
+  "generation_comparisons": [
+    {
+      "comparison": "best pipeline top-3 vs BM25 top-3",
+      "F1_difference": 0.03331220358887609,
+      "ci_low": -0.024285821610848527,
+      "ci_high": 0.08941628255485905
+    },
+    {
+      "comparison": "BM25 top-3 vs closed-book",
+      "F1_difference": 0.4163286246038902,
+      "ci_low": 0.3376831552191609,
+      "ci_high": 0.4952709911093977
+    },
+    {
+      "comparison": "gold paragraph vs best pipeline top-3",
+      "F1_difference": 0.1442804118060649,
+      "ci_low": 0.09532785506239426,
+      "ci_high": 0.19791130641947866
+    }
+  ],
+  "misses": [
+    {
+      "retriever": "best pipeline",
+      "case": "gold in top-3",
+      "n": 145,
+      "F1": 0.626429292329316,
+      "abstain": 0.0
+    },
+    {
+      "retriever": "best pipeline",
+      "case": "gold missed",
+      "n": 5,
+      "F1": 0.2,
+      "abstain": 0.0
+    },
+    {
+      "retriever": "BM25",
+      "case": "gold in top-3",
+      "n": 125,
+      "F1": 0.6573626998747204,
+      "abstain": 0.008
+    },
+    {
+      "retriever": "BM25",
+      "case": "gold missed",
+      "n": 25,
+      "F1": 0.18660317460317458,
+      "abstain": 0.0
+    }
+  ],
+  "timing": {
+    "BM25 index (s)": 0.1006920337677002,
+    "BM25 per query (ms)": 3.8817412853240967,
+    "MiniLM index (s)": 101.57115197181702,
+    "MiniLM per query (ms)": 8.296244382858276,
+    "BGE index (s)": 234.4102017879486,
+    "BGE per query (ms)": 21.86013674736023,
+    "re-rank top-20 per query (ms)": 826.5521311759949
+  },
+  "n_retrieval": 1000,
+  "n_gen": 150,
+  "llm": "Qwen/Qwen2.5-0.5B-Instruct"
+}
